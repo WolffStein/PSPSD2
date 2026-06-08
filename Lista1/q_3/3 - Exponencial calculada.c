@@ -1,10 +1,14 @@
-#import<stdlib.h>
+double fatorial(int n) {
+    if(n <= 1) return 1;
+    return n * fatorial(n-1);
+}
 
-int fatorial(){
-    int y, x= y+1,aux;
-    if(y = 1)
-    while( y >= 0) {
-        aux *= x - y;
-        y--;
-    }
+double potencia(int x,int n){
+    if(n == 0) return 1;
+    return x* potencia(x, n-1);
+}
+
+double exp_natural(int x, int n){
+    if(n == 0) return 1;
+    return exp_natural(x,n-1) + (potencia(x,n) / fatorial(n));
 }
