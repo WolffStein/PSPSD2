@@ -4,6 +4,8 @@
 
 int **board;
 
+int quadradoperfeito(int n);
+
 void montamatriz(int n){
     int valor;
     board = malloc(n * sizeof(int*));
@@ -46,9 +48,18 @@ int checacoluna(int coluna, int n){
     return 1;
 }
 
+int quadradoperfeito(int n){
+    for(int i = 1; i*i<=n;i++){
+        if(i*i == n){
+            return i;
+        }
+    }
+    return 0;
+}
+
 int checaBloco(int bloco, int n) {
     int *vistos = calloc(n+1, sizeof(int));
-    int sqrtN = quadradoPerfeito(n);
+    int sqrtN = quadradoperfeito(n);
 
     int linha_inicio = (bloco / sqrtN) * sqrtN;
     int coluna_inicio = (bloco % sqrtN) * sqrtN;
@@ -60,21 +71,13 @@ int checaBloco(int bloco, int n) {
             free(vistos);
             return 0;
            }
+           vistos[val] = 1;
         }
-        vistos[val] = 1;
     }
     free(vistos);
     return 1;
 }
 
-int quadradoperfeito(int n){
-    for(int i = 1; i*i<=n;i++){
-        if(i*i == n){
-            return i;
-        }
-    }
-    return 0;
-}
 
 
 int main(){
